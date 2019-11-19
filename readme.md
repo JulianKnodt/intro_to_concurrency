@@ -8,6 +8,16 @@ how to enforce a certain ordering of operations given a consistency model. I att
 formalize a few example environments which are common in industry, and also introduce some
 primitives that can be used to enforce ordering of operations in these systems.
 
-Concurrency is a pretty hot topic in the computer science world, because while it does not offer
-direct algorithmic advantages, it offers many
+Concurrency is a pretty hot topic in the computer science world, because it allows the
+programmer to take advantage of the increasingly fast multi-processor architectures in
+computers, and for larger organizations to handle the same operations at much higher scale.
+
+## What is Concurrency?
+
+Before actually discussing concurrency, it is useful to define concurrency:
+
+Concurrency:
+> Two events in a program can occur at the same logical time
+
+
 
