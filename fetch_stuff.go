@@ -5,42 +5,46 @@ import (
   "net/http"
   "bufio"
   "io/ioutil"
-  "os"
+  "strings"
   "sync"
 )
 
 const linkFile = "links.txt"
 
 func main() {
-  // responseMutex := sync.Mutex{}
-  responses := make([]string, 0)
+
+  links, _ := ioutil.ReadFile(linkFile)
+  responses := make(chan string, strings.Count(string(links), "\n"))
+
+  reader := bufio.NewReader(strings.NewReader(string(links)))
+  scanner := bufio.NewScanner(reader);
 
   var wg sync.WaitGroup
-  links, _ := os.Open(linkFile)
-  reader := bufio.NewReader(links)
-  scanner := bufio.NewScanner(reader);
-  total := 0
+  var once sync.Once
   for scanner.Scan() {
-    total += 1
     wg.Add(1)
-    go func() {
-      resp, err := http.Get(scanner.Text())
-      if err != nil {
-        log.Println(err)
-        return
-      }
-      /* Is this mutex necessary?
-      responseMutex.Lock()
-      defer responseMutex.Unlock()
-      */
+    go func(text string) {
+      resp, _ := http.Get(text)
       body, _ := ioutil.ReadAll(resp.Body)
-      responses = append(responses, string(body))
+      responses <- string(body)
       wg.Done()
-    }()
+      wg.Wait()
+      once.Do(func() {
+        close(responses)
+      })
+    }(scanner.Text())
   }
-  wg.Wait()
-  for _, resp := range responses {
-    log.Println(resp)
+  total := 0
+  for resp := range responses {
+    total += 1
+    log.Println(resp[0:min(len(resp), 50)])
   }
   log.Printf("Done fetching %d links", total)
+}
+
+func min(a, b int) int {
+  if a < b {
+    return a
+  }
+  return b
 }

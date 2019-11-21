@@ -1,0 +1,12 @@
+https://api.github.com/zen
+http://api.icndb.com/jokes/random
+https://api.jokes.one/
+https://api.chucknorris.io/jokes/random
+https://api.github.com/zen
+http://api.icndb.com/jokes/random
+https://api.jokes.one/
+https://api.chucknorris.io/jokes/random
+https://api.github.com/zen
+http://api.icndb.com/jokes/random
+https://api.jokes.one/
+https://api.chucknorris.io/jokes/random

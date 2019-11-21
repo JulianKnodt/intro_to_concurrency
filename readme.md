@@ -105,10 +105,13 @@ Let's instead switched to a runtime which allows for parallelism(but doesn't req
 [Producer/Consumer](prod_con.go
 
 <!---
-TODO add source code for some go routines, introduce sync.Mutex, sync.Once, sync. sync.WaitGroup
+TODO add source code for some go routines, introduce sync.Mutex, sync.WaitGroup
 
 Then, introduce channels as a form of synchronization
 -->
+
+[Fetching links](fetch_stuff.go)
+[Fetching links alternative](fetch_stuff2.go)
 
 ## Going even further
 
