@@ -4,13 +4,14 @@
 TLDR:
 When reasoning about concurrency, a programmer must often reason about the consistency
 model provided by the platform being developed on, as well as have some general knowledge about
-how to enforce a certain ordering of operations given a consistency model. I attempt to
+how to enforce a certain ordering of operations with that model. Here, I attempt to
 formalize a few example environments which are common in industry, and also introduce some
 primitives that can be used to enforce ordering of operations in these systems.
 
-Concurrency is a pretty hot topic in the computer science world, because it allows the
+Concurrency is a hot topic in CS, because it not only allows the
 programmer to take advantage of the increasingly fast multi-processor architectures in
-computers, and for larger organizations to handle the same operations at much higher scale.
+computers, but also allows for larger organizations to handle the same operations
+at much higher scale.
 
 ## What is Concurrency?
 
@@ -19,7 +20,7 @@ Before actually discussing concurrency, it is useful to define concurrency:
 > Concurrency:
 > Two "parts of the program" can occur at the same logical time.
 
-What is "logical time"? Logical time in this case is just referring to the ordering of events of
+What is "logical time"? Logical time as I define it here is refers to the ordering of events in
 in the program. In this case, what this means is that if two parts of a program A and B are
 concurrent, then either A could happen first or B could happen.
 
@@ -34,7 +35,8 @@ time-share the CPU.
 
 ---
 
-Let's look at an example of concurrency in programming, JavaScript, and specifically [NodeJS](https://nodejs.org/en/).
+Let's look at an example of concurrency in programming, JavaScript,
+and more specifically [NodeJS](https://nodejs.org/en/).
 
 JavaScript is a single threaded language, whether it's running in the browser or as a server.
 NodeJS self-describes itself as "an asynchronous event-driven JavaScript runtime". What does
@@ -65,13 +67,13 @@ Node is primarily used as a server side language, and the main reason for that i
 concurrency model, as it allows many requests to be processed, while not waiting for network
 round trips.
 
-Here are some more basic examples of concurrency in JS:
+Let's look at a basic examples of concurrency in JS:
 
-[Basic Concurrency](basic.js)
-[Reasoning about Nested Concurrency](nested.js)
+[Byte Count](wc.js)
 
-How do concurrent functions in JavaScript communicate? Well, since only one thing is ever
-executing, only one thing is executing at once. Thus, we can communicate through shared data
+How do concurrent functions in JavaScript communicate? Well, since there is only one thread to
+run on, only one thing is ever running at once. Because only one thing is running at once, we
+know that any object changed must've been the result Thus, we can communicate through shared data
 structures. This is because any data structure that is shared between different functions can
 know that no one else will modify it while it's running, and thus it can be sure that what it's
 observed must've been the result of previous code.
@@ -99,6 +101,8 @@ This is in stark contrast to the model JavaScript provides, where it is only pos
 line of code to be running at any given time(ignoring things happening in the background).
 
 Let's instead switched to a runtime which allows for parallelism(but doesn't require it).
+
+[Producer/Consumer](prod_con.go
 
 <!---
 TODO add source code for some go routines, introduce sync.Mutex, sync.Once, sync. sync.WaitGroup
