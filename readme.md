@@ -102,15 +102,32 @@ line of code to be running at any given time(ignoring things happening in the ba
 
 Let's instead switched to a runtime which allows for parallelism(but doesn't require it).
 
-[Producer/Consumer](prod_con.go
+Golang provides a nice abstraction around the messiness that are threads, allowing the user
+instead to focus on the concurrent aspects of the code, and letting the runtime handle execution
+of concurrency under the hood.
 
-<!---
-TODO add source code for some go routines, introduce sync.Mutex, sync.WaitGroup
+For starter's, let's look at a simple multiple producers, single consumer example.
 
-Then, introduce channels as a form of synchronization
--->
+A producer, in this case, is just something that outputs a value, and a consumer is something
+that uses that value.
+
+[Producer/Consumer](prod_con.go)
+
+Of course, this simple example doesn't capture all the complexity of reasoning about
+concurrency.
+
+Consider a bit more involved of an example:
+Imagine you have a link of files you need to fetch, and they need to be stored locally.
+This is the same problem a client for a server might have, where it needs to send multiple
+requests to different servers, and store all of the responses before forwarding them somewhere
+else, so this example is a little more practical at the one above.
+
+Let's look at two examples of how to implement that.
+
+[Serially Fetching](naive_fetch.go)
 
 [Fetching links](fetch_stuff.go)
+
 [Fetching links alternative](fetch_stuff2.go)
 
 ## Going even further
