@@ -51,7 +51,7 @@ setTimeout(() => {
 }, 1000)
 
 // waiting for file events
-fs.open("my_file.txt", "r" (err, file) => {
+fs.open("my_file.txt", "r", (err, file) => {
   console.log("My file is open!")
   fs.close(file, (err) => {
     console.log("My file is now closed.")
