@@ -132,6 +132,12 @@ Let's look at two examples of how to implement that.
 
 ## Going even further
 
+Are compilers allowed to reorder operations to different variables?
+If so, how do we know when to not do that, and how do we prevent it?
+
+How are locks implemented?
+When are atomics appropriate?
+
 <!---
 TODO add bit about compilers, reorderings, atomics and fences in golang
 -->
