@@ -138,8 +138,3 @@ If so, how do we know when to not do that, and how do we prevent it?
 How are locks implemented?
 When are atomics appropriate?
 
-<!---
-TODO add bit about compilers, reorderings, atomics and fences in golang
--->
-
-

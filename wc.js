@@ -32,5 +32,5 @@ for (file of filenames) {
   });
 }
 
-// Do we need this setTimeout
+// Will this setTimeout block?
 // setTimeout(() => {}, 1000);
