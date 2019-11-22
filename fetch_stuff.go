@@ -32,6 +32,8 @@ func main() {
       once.Do(func() {
         close(responses)
       })
+      // or
+      // close(responses)
     }(scanner.Text())
   }
   total := 0

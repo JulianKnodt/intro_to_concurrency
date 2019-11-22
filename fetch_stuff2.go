@@ -38,7 +38,7 @@ func main() {
   for _, resp := range responses {
     log.Println(resp[0:min(50, len(resp)-1)])
   }
-  log.Printf("Done fetching %d links, %d responses had", total, len(responses))
+  log.Printf("Done fetching %d links, stored %d responses", total, len(responses))
 }
 
 func min(a, b int) int {
